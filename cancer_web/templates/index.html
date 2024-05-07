@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+ 
+
+    <title>Skin Cancer</title>
+</head>
+
+<body>
+    <!-- Start Home -->
+    <div id="home">
+        <div class="layout">
+            <div class="navbar">
+                <div class="nav-logo">
+                    <h2>Cancer</h2>
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#menu">Types</a></li>
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                    </ul>
+
+                </div>
+                <!-- <div class="nav-icons">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-heart"></i>
+
+                </div> -->
+            </div>
+            <div class="caption">
+
+                <h2></h2>
+                <h1>Let's Try Using <span>Cancer</span> Site</h1>
+
+                <button class="btn btn1"><a href="{{ url_for('login') }}">Sign up now</a></button>
+                <!-- <button class="btn btn2">Start in studying now</button> -->
+
+            </div>
+        </div>
+    </div>
+    <!-- End Home -->
+
+    <!-- Start About -->
+    <div id="about">
+        <div class="about-img">
+            <img src="{{ url_for('static', filename='image/back.jpg') }}" alt="">
+        </div>
+        <div class="about-content">
+            <h2><span>About</span> Us</h2>
+            <h3>Why Choose us?</h3>
+            <p>At our skin cancer classification site, we're dedicated to leveraging cutting-edge technology to assist in the early 
+                detection and diagnosis of skin cancer. Our platform offers state-of-the-art AI algorithms that analyze skin images 
+                with high accuracy, aiding in the identification of potential melanomas and other types of skin lesions. With a commitment
+                to innovation and excellence, we strive to provide users with reliable and timely results, empowering them to take proactive 
+                steps towards skin health. Choose us for advanced skin cancer classification technology and personalized care that puts your 
+                well-being first...</p>
+
+            <button><a href="#">Explore us now</a></button>
+        </div>
+    </div>
+    <!-- End About -->
+
+    <!-- Start Menu -->
+    <div id="menu">
+        
+        <div class="menu-title">
+            <h2>Our <span>Classes</span></h2>
+        </div>
+        <div class="menu-items">
+            
+            <div class="item invisible">
+                <div class="item-layer">
+                    <div class="item-image">
+                        <img src="{{ url_for('static', filename='image/bt.png') }}" alt="">
+                    </div>
+                    <div class="item-data">
+                        <h3>Brain Tumor</h3>
+                        <p>
+                            Brain tumors cause symptoms like headaches, seizures, weakness. Diagnosis: imaging, biopsy. Treatments: surgery, radiation, chemotherapy. Multidisciplinary care essential for comprehensive treatment.
+                            </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-layer">
+                    <div class="item-image">
+                        <img src="{{ url_for('static', filename='image/nv.jpg') }}" alt="">
+                        <!-- <i class="fa-solid fa-heart fa-xl"></i> -->
+                    </div>
+                    <div class="item-data">
+                        <h3>Melanocytic Nevi (nv)</h3>
+                        <p>Melanocytic nevi, commonly known as moles, are benign growths that develop from melanocytes, the pigment-producing 
+                            cells in the skin.</p>
+                     
+                        <!-- <button>Join now</button> -->
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-layer">
+                    <div class="item-image">
+                        <img src="{{ url_for('static', filename='image/mel.jpg') }}" alt="">
+                         <!-- <i class="fa-solid fa-heart fa-xl"></i> -->
+                    </div>
+                    <div class="item-data">
+                        <h3>Melanoma (mel)</h3>
+                        <p>Melanoma is the most serious type of skin cancer, developing from melanocytes. It can spread rapidly
+                            to other parts of the body if not treated early.</p>
+                      
+                        <!-- <button>Join now</button> -->
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-layer">
+                    <div class="item-image">
+                        <img src="{{ url_for('static', filename='image/bkl.jpg') }}" alt="">
+                         <!-- <i class="fa-solid fa-heart fa-xl"></i> -->
+                    </div>
+                    <div class="item-data">
+                        <h3>Benign Keratosis-like Lesions (bkl)</h3>
+                        <p>Benign keratosis-like lesions are non-cancerous growths that resemble actinic keratoses
+                            but are typically harmless.</p>
+                  
+                        <!-- <button>Join now</button> -->
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-layer">
+                    <div class="item-image">
+                        <img src="{{ url_for('static', filename='image/bcc.jpg') }}" alt="">
+                         <!-- <i class="fa-solid fa-heart fa-xl"></i> -->
+                    </div>
+                    <div class="item-data">
+                        <h3>Basal Cell Carcinoma (bcc)</h3>
+                        <p>Basal cell carcinoma is a common type of skin cancer that develops from the basal cells in the 
+                            outer layer of the skin. It is usually slow-growing and rarely spreads to other parts of the body.</p>
+                    
+                        <!-- <button>Join now</button> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-layer">
+                    <div class="item-image">
+                        <img src="{{ url_for('static', filename='image/akiec.jpg') }}" alt="">
+                         <!-- <i class="fa-solid fa-heart fa-xl"></i> -->
+                    </div>
+                    <div class="item-data">
+                        <h3>Actinic Keratoses and Intraepithelial Carcinoma (akiec)</h3>
+                        <p>Actinic keratoses are precancerous growths that develop on sun-exposed areas of the skin. Intraepithelial 
+                            carcinoma refers to cancerous growth confined within the top layer of the skin.</p>
+                      
+                        <!-- <button>Join now</button> -->
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-layer">
+                    <div class="item-image">
+                        <img src="{{ url_for('static', filename='image/vasc.jpg') }}" alt="">
+                         <!-- <i class="fa-solid fa-heart fa-xl"></i> -->
+                    </div>
+                    <div class="item-data">
+                        <h3>Vascular Lesions (vasc)</h3>
+                        <p>Vascular lesions include various types of abnormalities affecting blood 
+                            vessels in the skin, such as hemangiomas and vascular malformations.</p>
+                   
+                        <!-- <button>Join now</button> -->
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-layer">
+                    <div class="item-image">
+                        <img src="{{ url_for('static', filename='image/df.jpg') }}" alt="">
+                         <!-- <i class="fa-solid fa-heart fa-xl"></i> -->
+                    </div>
+                    <div class="item-data">
+                        <h3>Dermatofibroma (df)</h3>
+                        <p>Dermatofibroma is a benign skin tumor that typically presents as a small, firm bump. It 
+                            is composed of fibrous tissue and can vary in color.</p>
+                      
+                        <!-- <button>Join now</button> -->
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+        </div>
+
+    </div>
+    <!-- End Menu -->
+
+    <div id="floating-window" class="floating-window">
+        <div class="floating-content" id="floating-content"></div>
+        <button id="close-button">Close</button>
+    </div>
+    
+    <!-- Your existing HTML code -->
+    <div id="gallery" class="container">
+        <div class="gallery-title">
+            <h2>Our <span>model</span></h2>
+        </div>
+        <div class="gallery-items">
+            <div class="item">
+                <div class="pad-item">
+                    <div class="inner-item">
+                        <img id="uploaded-image" src="{{ url_for('static', filename='image/sk.jpg') }}" alt="">
+                        <div class="item-layer">
+                            <h3>Skin Cancer</h3>
+                            <input type="file" id="image-upload" style="display: none;" accept="image/*">
+                            <button id="predict-button">Predict Now</button>
+                            <div id="prediction-result"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+    <!-- Start Footer -->
+    <div id="footer">
+        <div class="footer-data container">
+            <div class="part part1">
+                <h2>Cancer</h2>
+                <p>Don't forget to follow us in our
+                    social media Platforms</p>
+                    <div class="part-icons">
+                        <i class="fab fa-facebook fa-xl"></i>
+                        <i class="fab fa-instagram fa-xl"></i>
+                        <i class="fab fa-twitter fa-xl"></i>
+                        <i class="fab fa-linkedin fa-xl"></i>
+                    </div>
+                    
+            </div>
+            <div class="part part2">
+                <h2>Contact Info</h2>
+                <p>+20 111 222 3333</p>
+                <p><a href="#">Skin_Cancer.supp@gmail.com</a></p>
+                
+            </div>
+
+            <div class="part part2">
+                <h2>Classes</h2>
+                <p>1. Melanocytic Nevi (nv)</p>
+                <p>2. Melanoma (mel)</p>
+                <p>3. Benign Keratosis-like Lesions (bkl)</p>
+                <p>4. Basal Cell Carcinoma (bcc)</p>
+                <p>5. Actinic Keratoses and Intraepithelial Carcinoma (akiec)</p>
+                <p>6. Vascular Lesions (vasc)</p>
+                <p>7. Dermatofibroma (df)</p>
+                
+            </div>
+
+            <div class="part part2">
+                <h2>Created by</h2>
+                <p>Mostafa Tarek</p>
+                <p>Mohamed Ezz</p>
+                <p>Abdelrahman Ahmed</p>
+                <p>Amr Samir</p>
+                <p>Nour Ehab</p>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer -->
+
+</body>
+
+</html>

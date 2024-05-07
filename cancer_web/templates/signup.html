@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/icon2.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+ 
+
+    <title>Rafeeqy</title>
+
+
+
+
+</head>
+
+<body>
+
+    <div id="home">
+        <div class="layout">
+            <div class="navbar">
+                <div class="nav-logo">
+                    <h2>Skin Cancer</h2>
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/login">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="background">
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+    
+            <form id="signup-form" action="/signup" method="POST">
+                <h3>Create Account</h3>
+                <div class="input-group">
+                    <div>
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname" placeholder="Enter your first name" id="firstname">
+                    </div>
+                    <div>
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" placeholder="Enter your last name" id="lastname">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div>
+                        <label for="country">Country</label>
+                        <input type="text" name="country" placeholder="Enter your country" id="country">
+                    </div>
+                    <div>
+                        <label for="city">City</label>
+                        <input type="text" name="city" placeholder="Enter your city" id="city">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" placeholder="Enter your email" id="email">
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" placeholder="Enter your password" id="password">
+                    </div>
+                </div>
+                <button type="submit" value="Sign up" >Sign Up</button>
+                <p id="sign-up-message" style="display:none;">Sign up successful!</p>
+    
+    </form>
+
+    
+
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Design by foolishdeveloper.com -->
+    <title>Login</title>
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="image/icon2.png">
+    <!--Stylesheet-->
+    <style media="screen">
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #9d99bb;
+        } 
+        body {
+          background-image: url('static/image/back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.layout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: rgba(0, 0, 0,.6);
+}
+.navbar{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #171515;
+  box-shadow: 0 0 10px rgba(0, 0, 0,0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+.navbar .nav-links ul{
+  display: flex;
+}
+.navbar .nav-links li{
+  list-style-type: none;
+padding: 10px 20px;}
+.navbar .nav-links li a{
+  text-decoration: none;
+  color: #fff;
+  transition: all .5s;
+
+}
+.navbar .nav-links li a::after{
+  content: '';
+  width: 0%;
+  height: 2px;
+  background-color: #F2921D;
+  display: block;
+  transition: all .5s linear;
+}
+.navbar .nav-links li a:hover::after{
+  width: 100%;
+}
+.navbar .nav-links li a:hover{
+  color: #F2921D;
+}
+.navbar .nav-logo h2{
+  font-family: 'Playball', cursive;
+  font-size: 40px;
+  color: #F2921D;
+  cursor: pointer;
+}
+.nav-icons i{
+  color: #fff;
+  margin: 0 5px;
+  font-size: 18px;
+  transition: 1s all;
+}
+.nav-icons i:hover{
+  color: #F2921D;
+}
+.caption{
+text-align: center;
+}
+        .background {
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            
+        }
+
+        .background .shape {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .shape:first-child {
+            background: linear-gradient(#1845ad,
+                    #23a2f6);
+            left: -55%;
+            top: -80px;
+        }
+
+        .shape:last-child {
+            background: linear-gradient(to right,
+                    #ff512f,
+                    #f09819);
+            left: -155%;
+            bottom: -80px;
+        }
+
+        form {
+            height: 520px;
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.13);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 20%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 50px 35px;
+        }
+
+        form * {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+        }
+
+        form h3 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        input {
+            display: block;
+            height: 50px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        ::placeholder {
+            color: #e5e5e5;
+        }
+
+        .lo {
+            margin-top: 30px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+ 
+        .su {
+  width: 100%;
+  color: #ffffff;
+  padding: 0px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  margin-top: 10px;
+}
+
+        .social {
+            margin-top: 30px;
+            display: flex;
+        }
+
+        .social div {
+            background: red;
+            width: 150px;
+            border-radius: 3px;
+            padding: 5px 10px 10px 5px;
+            background-color: rgba(255, 255, 255, 0.27);
+            color: #eaf0fb;
+            text-align: center;
+        }
+
+        .social div:hover {
+            background-color: rgba(255, 255, 255, 0.47);
+        }
+
+        .social .fb {
+            margin-left: 25px;
+        }
+
+        .social i {
+            margin-right: 4px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div id="home">
+      <div class="layout">
+        <div class="navbar">
+          <div class="nav-logo">
+            <h2>Skin Cancer</h2>
+          </div>
+          <div class="nav-links">
+            <ul>
+              <li><a href="/">Home</a></li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="background">
+          <div class="shape"></div>
+          <div class="shape"></div>
+        </div>
+  
+        <form method="POST">
+          <h3>Login Here</h3>
+      
+          <label for="email">Email</label>
+          <input type="email" name="email" placeholder="Email" required>
+      
+          <label for="password">Password</label>
+          <input type="password" name="password" placeholder="Password" required>
+      
+          <button type="submit" class="lo">Log In</button>
+          <button type="button" class="su"><a href="{{ url_for('signup') }}">Don't have an account? Sign Up Now</a></button>
+      </form>
+      </div>
+    </div>
+</html>
