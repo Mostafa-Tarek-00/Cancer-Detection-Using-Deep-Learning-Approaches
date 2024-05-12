@@ -3,15 +3,15 @@ os.environ['CUDA_VISIBLE_DEVICES'] = ""
 import numpy as np
 from PIL import Image
 import tensorflow as tf
-from tensorflow.keras.models import Model  
 from tensorflow.keras.models import load_model
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, Flatten, Dense, MaxPool2D
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 import io
+import cv2
+from tensorflow.keras import backend as K
 
-# Initialize Flask app
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -37,7 +37,6 @@ def signup():
         email = request.form['email']
         password = request.form['password']
 
-        # Check if the email is already registered
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             return jsonify({'error': 'Email already registered'})
@@ -57,15 +56,11 @@ def login():
         email = request.form['email']
         password = request.form['password']
 
-        # Check if the user exists in the database
         user = User.query.filter_by(email=email).first()
         if user:
-            # Check if the provided password matches the stored password
             if user.password == password:
-                # Store user information in the session
                 session['user_id'] = user.id
                 session['firstname'] = user.firstname
-                # Redirect to the homepage or any other desired page
                 return redirect(url_for('index'))
             else:
                 return jsonify({'error': 'Incorrect password'})
@@ -105,10 +100,8 @@ def create_model():
 
 model = create_model()
 
-# Load model parameters
 model.load_weights('model_weights_new.h5')
 
-# Dictionary for labels
 lesion_type_dict = {
     'nv': 'Melanocytic nevi (nv)',
     'mel': 'Melanoma (mel)',
@@ -129,14 +122,12 @@ label_mapping = {
     6: 'df'
 }
 
-# Preprocess the image and make a prediction
-def predict(image):
+def predict_skin(image):
     tf.experimental.numpy.experimental_enable_numpy_behavior()
 
     img = np.array(image)[:, :, :3]
-    # Resize the image to 28x28 pixels
     img = tf.image.resize(img, (28, 28))
-    img = img.numpy()  # Convert EagerTensor to NumPy array
+    img = img.numpy()  
     img = img.reshape((1, 28, 28, 3))
     predictions = model.predict(img)
     max_index = np.argmax(predictions)
@@ -144,25 +135,82 @@ def predict(image):
     confidence = predictions[0, max_index]
     return lesion_type_dict[predicted_label], confidence
 
-# Route for the homepage
+im_width = 256
+im_height = 256
+smooth=100
+
+def dice_coef(y_true, y_pred):
+    y_truef=K.flatten(y_true)
+    y_predf=K.flatten(y_pred)
+    And=K.sum(y_truef* y_predf)
+    return((2* And + smooth) / (K.sum(y_truef) + K.sum(y_predf) + smooth))
+
+def dice_coef_loss(y_true, y_pred):
+    return -dice_coef(y_true, y_pred)
+
+def iou(y_true, y_pred):
+    intersection = K.sum(y_true * y_pred)
+    sum_ = K.sum(y_true + y_pred)
+    jac = (intersection + smooth) / (sum_ - intersection + smooth)
+    return jac
+
+def jac_distance(y_true, y_pred):
+    y_truef=K.flatten(y_true)
+    y_predf=K.flatten(y_pred)
+
+    return - iou(y_true, y_pred)
+    
+
+brain_model = load_model('unet_brain_mri_seg.hdf5', custom_objects={'dice_coef_loss': dice_coef_loss, 'iou': iou, 'dice_coef': dice_coef})
+
+def predict_brain(file):
+    img = Image.open(file)
+    img_array = np.array(img)
+
+    slice_index = img_array.shape[2] // 2
+    img_slice = img_array[:, :, slice_index]
+
+    img_slice = cv2.resize(img_slice, (im_height, im_width))
+    img_slice = img_slice / np.max(img_slice)
+
+    img_slice_rgb = np.stack((img_slice,) * 3, axis=-1)
+
+    img_slice_rgb = img_slice_rgb[np.newaxis, :, :, :]
+
+    pred_brain = brain_model.predict(img_slice_rgb)
+
+    alpha = 0.5
+    img_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2GRAY)
+    mask_img = np.zeros_like(img_array)  
+    mask_img[np.squeeze(pred_brain) > 0.5] = 255
+    overlay_img = cv2.addWeighted(img_array, 1 - alpha, mask_img, alpha, 0)
+
+    overlay_image_path = 'static/overlay_image.jpg' 
+    cv2.imwrite(overlay_image_path, overlay_img)
+
+    return overlay_image_path
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Route for handling image upload and prediction
 @app.route('/predict', methods=['POST'])
 
 def predict_image():
     file = request.files['image']
     if file:
-        image = Image.open(io.BytesIO(file.read()))
-        label, confidence = predict(image)
-        confidence_value = confidence.item()
-        return jsonify({'prediction': label, 'confidence': confidence_value})
-    else:
-        return jsonify({'error': 'No image provided'})
+        if file.filename.endswith('.tif') or file.filename.endswith('.tiff'):
+            overlay_image_path = predict_brain(file)
+            return jsonify({'overlay_image': overlay_image_path})
+        
+        elif file.filename.endswith('.jpg') or file.filename.endswith('.jpeg'):
+            image = Image.open(io.BytesIO(file.read()))
+            label, confidence = predict_skin(image)
+            confidence_value = confidence.item()
+            return jsonify({'prediction': label, 'confidence': confidence_value})
+        else:
+            return jsonify({'error': 'Unsupported file format'})
 
-# Run the Flask app
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

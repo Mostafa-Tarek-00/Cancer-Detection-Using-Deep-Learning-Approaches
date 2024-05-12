@@ -43,7 +43,10 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(data => {
-            if (data && data.prediction) {
+            if (data && data.overlay_image) {
+                const overlayImageUrl = data.overlay_image;
+                showOverlayImage(overlayImageUrl);
+            } else if (data && data.prediction) {
                 const predictionClass = data.prediction;
                 const confidence = Math.round(data.confidence * 100);
                 const predictionText = `Prediction: ${predictionClass}, Confidence: ${confidence}%`;
@@ -66,6 +69,18 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("Error:", error);
             predictionResult.innerHTML = "Error: Unable to make prediction.";
         });
+    }
+    
+    
+    function showOverlayImage(overlayImageUrl) {
+        // Replace the uploaded image with the overlay image
+        uploadedImage.src = overlayImageUrl;
+    
+        // Hide the prediction result div
+        predictionResult.innerHTML = "";
+    
+        // Display the uploaded image with the overlay
+        uploadedImage.style.opacity = 0.7; // Set opacity to see both original and overlay
     }
 
     // Close floating window
