@@ -1,0 +1,8 @@
+lesion_id,image_id,dx,dx_type,age,sex,localization
+HAM_0004036,ISIC_0027648,df,histo,55,male,upper extremity
+HAM_0006635,ISIC_0028900,mel,histo,70,male,face
+HAM_0000987,ISIC_0025301,bcc,histo,70,male,back
+HAM_0004727,ISIC_0028250,nv,follow_up,45,female,lower extremity
+HAM_0006036,ISIC_0029713,akiec,histo,85,male,back
+HAM_0000845,ISIC_0025244,vasc,consensus,45,female,trunk
+HAM_0004341,ISIC_0031967,bkl,histo,70,female,scalp
